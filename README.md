@@ -4,7 +4,7 @@ Site estático em português do Brasil, adaptado do layout de `gabrielxcosta.git
 
 ## Publicação pelo GitHub Pages
 
-1. Extraia o ZIP e envie **os arquivos de dentro da pasta `republica-adega`** para a raiz do repositório `gabrielxcosta/republica-adega`. Não envie só o arquivo ZIP ou a pasta como subpasta.
+1. Extraia o ZIP e envie **os arquivos extraídos do ZIP** para a raiz do repositório `gabrielxcosta/republica-adega`. Não envie apenas o arquivo ZIP nem crie outra subpasta.
 2. Em **Settings → Pages**, configure **Deploy from a branch** → **main** → **/(root)**.
 3. O site ficará disponível em `https://gabrielxcosta.github.io/republica-adega/` após a publicação.
 
@@ -15,7 +15,7 @@ Site estático em português do Brasil, adaptado do layout de `gabrielxcosta.git
 - `homenageados.html`: seção preparada para homenagens confirmadas.
 - `moradores.html`: seção preparada para residentes atuais; nomes não inventados.
 - `assets/site.css`, `assets/site.js`: visual responsivo e comportamento do site.
-- `imagens/logo-adega.png`: o logo principal escolhido, conservado como enviado (apenas margens transparentes recortadas).
+- `imagens/logo-adega.png`: o logo principal escolhido, idêntico à imagem escolhida.
 - `imagens/logo-adega-700.webp` e `logo-adega-1100.webp`: versões otimizadas.
 - O site usa somente o logo principal `imagens/logo-adega.png` (e suas versões otimizadas) em toda a identidade visual, inclusive como ícone do navegador.
 - `imagens/historia-*.webp`: páginas digitalizadas do acervo fornecido para apoio à seção histórica.
@@ -35,3 +35,9 @@ Site estático em português do Brasil, adaptado do layout de `gabrielxcosta.git
 O relato dos quatro moradores que se mudaram no marco fundador e o estatuto que lista cinco fundadores são apresentados separadamente. Não são inventados nomes, fotografias ou homenagens de pessoas atuais. O CEP `35400-111` e as informações de proximidade seguem os dados enviados pelo solicitante; registros mais antigos mostram `35400-000`.
 
 **Mapa**: incorporado via Google Maps (iframe pela busca do endereço informado). Não requer token nem servidor; depende de conexão à internet. Ao abrir localmente, o navegador pode restringir incorporações; no GitHub Pages funcionará conforme as políticas do provedor.
+
+## Ajustes visuais de novembro de 2026
+
+O cabeçalho e a barra lateral foram compactados, o logo foi mantido uma única vez por página, acima do nome República Adega, e o conteúdo das seções não depende mais de animação para aparecer. O CSS foi reorganizado para evitar imagens grandes e rolagem horizontal em telas pequenas.
+
+**Limpeza opcional no repositório:** remova versões antigas não utilizadas, como `favicon.svg`, `imagens/emblema.svg`, `imagens/pessoa.svg` e qualquer `emblema-ra.png`, caso ainda existam no GitHub. O site corrigido não aponta para esses arquivos.
