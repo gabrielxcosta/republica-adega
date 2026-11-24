@@ -43,11 +43,32 @@
     selected = query;
     map.src = 'https://www.google.com/maps?q=' + encodeURIComponent(query) + '&output=embed';
     map.title = 'Mapa: ' + button.querySelector('strong').textContent + ' em Ouro Preto';
-    document.querySelectorAll('[data-map-query]').forEach(item => item.classList.toggle('selected', item === button));
   }
   document.querySelectorAll('[data-map-query]').forEach(button => {
     button.addEventListener('mouseenter', () => showPlace(button));
     button.addEventListener('focus', () => showPlace(button));
     button.addEventListener('click', () => showPlace(button));
   });
+})();
+
+(() => {
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const selectors = [
+    '.site-header', '.sidebar-inner', '.page-main .section-kicker', '.page-main h1',
+    '.page-main .section-title', '.page-main .section-intro', '.page-main .lead',
+    '.about-description p', '.hero-actions', '.modern-timeline article', '.photo-carousel',
+    '.vacancy-content p', '.vacancy-seal', '.map-frame', '.nearby-hint',
+    '.nearby-grid > button', '.person-card', '.link-strip', '.footer-note',
+    '.page-main > section > p:not(.section-intro):not(.lead)'
+  ];
+  const items = document.querySelectorAll(selectors.join(','));
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('entrance-ready');
+      entry.target.classList.remove('entrance-pending');
+      observer.unobserve(entry.target);
+    });
+  }, {threshold: 0, rootMargin: '0px 0px -30px 0px'});
+  items.forEach(item => { item.classList.add('entrance-pending'); observer.observe(item); });
 })();

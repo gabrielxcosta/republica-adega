@@ -245,7 +245,7 @@ h2.section-title {font:400 clamp(24px,2.6vw,33px)/1.4 'Libre Baskerville',Georgi
 .nearby-hint {margin:20px 0 0; color:var(--muted); font-size:12px}
 .nearby-grid {margin-top:10px}
 .nearby-grid>button {min-width:0; padding:12px 4px 8px; border:0; border-top:2px solid #bba59a; background:transparent; color:inherit; text-align:left; transition:background .2s,border-color .2s}
-.nearby-grid>button:hover,.nearby-grid>button:focus-visible,.nearby-grid>button.selected {border-color:var(--wine); background:#e7ddd2}
+.nearby-grid>button:hover,.nearby-grid>button:focus-visible {border-color:var(--wine); background:#e7ddd2}
 .nearby-grid small {display:block; color:#766a61; margin:6px 0 0; font-size:11px; line-height:1.7}
 
 /* Cartões de ex-alunos e homenageados */
@@ -267,35 +267,8 @@ h2.section-title {font:400 clamp(24px,2.6vw,33px)/1.4 'Libre Baskerville',Georgi
   .page-main::before {background-image:url("../imagens/EM.png")}
 }
 
-/* Entradas suaves: o conteúdo permanece visível em navegadores sem essa API. */
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .page-main .section-kicker,
-    .page-main h1,
-    .page-main .section-title,
-    .page-main .section-intro,
-    .page-main .lead,
-    .about-description p,
-    .hero-actions,
-    .modern-timeline article,
-    .photo-carousel,
-    .vacancy-content > div,
-    .map-frame,
-    .nearby-grid > button,
-    .person-card,
-    .link-strip {
-      animation: content-arrive linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 25%;
-    }
-    .person-card {animation-name: card-arrive}
-    @keyframes content-arrive {
-      from {opacity:0; translate:0 18px; filter:blur(2px)}
-      to {opacity:1; translate:0 0; filter:blur(0)}
-    }
-    @keyframes card-arrive {
-      from {opacity:0; translate:0 14px; scale:.98}
-      to {opacity:1; translate:0 0; scale:1}
-    }
-  }
+/* As entradas são ativadas progressivamente pelo observador de rolagem. */
+@media (prefers-reduced-motion: no-preference) {
+  .entrance-pending {opacity:0; translate:0 16px}
+  .entrance-ready {opacity:1; translate:0 0; transition:opacity .7s ease, translate .7s ease}
 }
