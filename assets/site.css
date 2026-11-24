@@ -45,7 +45,8 @@ em {font-family:'Libre Baskerville',Georgia,serif; font-weight:400; color:var(--
 .sidebar-text {margin:0; color:#70645c; font-size:12px; line-height:1.8; overflow-wrap:anywhere}
 .sidebar-mini-link {display:inline-block; color:var(--wine); font-size:12px; font-weight:700; margin-top:10px}
 .sidebar-footer {margin-top:28px; font-size:10px; color:#95867a; letter-spacing:.045em}
-.page-main {min-width:0; max-width:100%}
+.page-main {position:relative; isolation:isolate; min-width:0; max-width:100%}
+.page-main::before {content:""; position:sticky; top:0; display:block; width:100%; height:100vh; margin-bottom:-100vh; z-index:-1; pointer-events:none; background:url("../imagens/EM.png") center center / min(75%, 500px) auto no-repeat; opacity:.07}
 
 /* Corpo editorial */
 h1,h2,h3,p {overflow-wrap:break-word}
@@ -229,3 +230,58 @@ h2.section-title {font:400 clamp(24px,2.6vw,33px)/1.4 'Libre Baskerville',Georgi
   .honor-panel,.person-tile {align-items:flex-start; flex-direction:column}
 }
 @media(prefers-reduced-motion:reduce) {html {scroll-behavior:auto} * {animation:none!important; transition:none!important}}
+
+/* Fotos da casa */
+.photo-carousel {width:min(100%, 620px); margin:0 auto}
+.carousel-frame {position:relative; overflow:hidden; border-radius:6px; background:#ddd5c8}
+.carousel-photo-link {display:block; aspect-ratio:3/2}
+.carousel-photo-link img {display:block; width:100%; height:100%; object-fit:contain; transition:transform .3s ease}
+.carousel-photo-link:hover img {transform:scale(1.02)}
+.carousel-arrow {position:absolute; top:50%; transform:translateY(-50%); display:grid; place-items:center; width:42px; height:42px; padding:0; border:0; border-radius:50%; background:rgba(48,40,37,.78); color:white; font-size:30px; line-height:1; transition:background .2s}
+.carousel-arrow:hover {background:var(--wine)}
+.carousel-arrow.prev {left:12px}
+.carousel-arrow.next {right:12px}
+.carousel-meta {display:flex; justify-content:space-between; gap:12px; padding:10px 2px 0; color:var(--muted); font-size:11px; font-weight:700; letter-spacing:.04em}
+.nearby-hint {margin:20px 0 0; color:var(--muted); font-size:12px}
+.nearby-grid {margin-top:10px}
+.nearby-grid>button {min-width:0; padding:12px 4px 8px; border:0; border-top:2px solid #bba59a; background:transparent; color:inherit; text-align:left; transition:background .2s,border-color .2s}
+.nearby-grid>button:hover,.nearby-grid>button:focus-visible,.nearby-grid>button.selected {border-color:var(--wine); background:#e7ddd2}
+.nearby-grid small {display:block; color:#766a61; margin:6px 0 0; font-size:11px; line-height:1.7}
+
+/* Entrada progressiva quando o navegador oferece animações ligadas à rolagem. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .paper, .modern-timeline article, .nearby-grid > button, .vacancy-content > *, .photo-carousel {
+      animation: emerge linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 20%;
+    }
+    @keyframes emerge {
+      from {opacity:0; transform:translateY(16px)}
+      to {opacity:1; transform:translateY(0)}
+    }
+  }
+}
+
+/* Cartões de ex-alunos e homenageados */
+.people-cards {display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px}
+.person-card {min-width:0; padding:20px 15px; text-align:center; background:var(--card); border:1px solid var(--border); border-radius:5px; transition:transform .2s ease,box-shadow .2s ease}
+.person-card:hover {transform:translateY(-3px); box-shadow:0 6px 18px rgba(48,40,37,.1)}
+.person-card img {display:block; width:72px; height:72px; object-fit:contain; margin:0 auto 12px; padding:12px; border-radius:50%; background:#e8ded3}
+.person-card h3 {margin:0 0 4px; font-size:15px; line-height:1.4; color:var(--wine)}
+.person-card p {margin:0; font-size:12px; line-height:1.55; color:var(--muted)}
+@media(max-width:700px) {.people-cards {grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px} .person-card {padding:16px 10px}}
+@media(max-width:350px) {.people-cards {grid-template-columns:1fr}}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .person-card {animation:emerge linear both; animation-timeline:view(); animation-range:entry 0% entry 20%}
+  }
+}
+
+.person-card img.resident-photo {object-fit:cover; padding:0}
+
+/* O brasão vetorizado desenha seus caminhos mantendo a marca-d’água fixa. */
+.page-main::before {background-image:url("../imagens/em-tracos.svg")}
+@media (prefers-reduced-motion:reduce) {
+  .page-main::before {background-image:url("../imagens/EM.png")}
+}

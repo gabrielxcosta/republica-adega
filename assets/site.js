@@ -13,3 +13,41 @@
     button.setAttribute('aria-expanded', 'false');
   }));
 })();
+
+(() => {
+  const carousel = document.querySelector('.photo-carousel');
+  if (carousel) {
+    const photos = ["DSCN0332.JPG", "DSCN0333.JPG", "DSCN0340.JPG", "DSCN0341.JPG", "DSCN0343.JPG", "DSCN0345.JPG", "DSCN0346.JPG", "DSCN0347.JPG", "DSCN0353.JPG", "DSCN0357.JPG", "DSCN0358.JPG", "DSCN0363.JPG", "DSCN0373.JPG", "DSCN0376.JPG", "DSCN0384.JPG", "DSCN0385.JPG", "DSCN0389.JPG", "DSCN0390.JPG", "DSCN0398.JPG", "DSCN0399.JPG", "DSCN0400.JPG", "DSCN0403.JPG", "DSCN0406.JPG", "DSCN0407.JPG", "DSCN0432.JPG"];
+    const image = carousel.querySelector('img');
+    const link = carousel.querySelector('.carousel-photo-link');
+    const count = carousel.querySelector('.carousel-count');
+    let current = 0;
+    function showPhoto(index) {
+      current = (index + photos.length) % photos.length;
+      const path = 'imagens/casa/otimizadas/' + photos[current].replace('.JPG', '.webp');
+      image.src = path;
+      image.alt = `Foto ${current + 1} da casa da República Adega`;
+      link.href = path;
+      count.textContent = `${current + 1} / ${photos.length}`;
+    }
+    carousel.querySelector('.prev').addEventListener('click', () => showPhoto(current - 1));
+    carousel.querySelector('.next').addEventListener('click', () => showPhoto(current + 1));
+  }
+
+  const map = document.querySelector('#location-map');
+  if (!map) return;
+  let selected = '';
+  function showPlace(button) {
+    const query = button.dataset.mapQuery;
+    if (query === selected) return;
+    selected = query;
+    map.src = 'https://www.google.com/maps?q=' + encodeURIComponent(query) + '&output=embed';
+    map.title = 'Mapa: ' + button.querySelector('strong').textContent + ' em Ouro Preto';
+    document.querySelectorAll('[data-map-query]').forEach(item => item.classList.toggle('selected', item === button));
+  }
+  document.querySelectorAll('[data-map-query]').forEach(button => {
+    button.addEventListener('mouseenter', () => showPlace(button));
+    button.addEventListener('focus', () => showPlace(button));
+    button.addEventListener('click', () => showPlace(button));
+  });
+})();
