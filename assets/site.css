@@ -203,8 +203,8 @@ h2.section-title {font:400 clamp(24px,2.6vw,33px)/1.4 'Libre Baskerville',Georgi
   .archive-grid figure a {height:230px}
   .vacancies {padding:21px 17px 25px}
   .vacancy-content {grid-template-columns:1fr; gap:12px}
-  .vacancy-seal {width:auto; height:auto; border:0; border-top:1px solid var(--border); border-radius:0; transform:none; padding:15px 0 0; flex-direction:row; gap:9px; justify-content:flex-start; flex-wrap:wrap}
-  .vacancy-seal strong {font-size:13px}
+  .vacancy-seal {width:130px; height:130px; margin:8px auto 0; border:2px solid var(--wine); border-radius:50%; transform:rotate(-7deg); padding:0; flex-direction:column; gap:4px; justify-content:center; flex-wrap:nowrap}
+  .vacancy-seal strong {font-size:15px}
   .map-frame iframe {height:285px}
   .map-topline {flex-wrap:wrap; gap:9px; font-size:9px}
   .map-address {align-items:flex-start}
