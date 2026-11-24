@@ -270,5 +270,6 @@ h2.section-title {font:400 clamp(24px,2.6vw,33px)/1.4 'Libre Baskerville',Georgi
 /* As entradas são ativadas progressivamente pelo observador de rolagem. */
 @media (prefers-reduced-motion: no-preference) {
   .entrance-pending {opacity:0; translate:0 16px}
-  .entrance-ready {opacity:1; translate:0 0; transition:opacity .7s ease, translate .7s ease}
+  .entrance-ready {animation:entrance-appear .7s ease both}
+  @keyframes entrance-appear {from {opacity:0; translate:0 16px} to {opacity:1; translate:0 0}}
 }
