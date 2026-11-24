@@ -248,21 +248,6 @@ h2.section-title {font:400 clamp(24px,2.6vw,33px)/1.4 'Libre Baskerville',Georgi
 .nearby-grid>button:hover,.nearby-grid>button:focus-visible,.nearby-grid>button.selected {border-color:var(--wine); background:#e7ddd2}
 .nearby-grid small {display:block; color:#766a61; margin:6px 0 0; font-size:11px; line-height:1.7}
 
-/* Entrada progressiva quando o navegador oferece animações ligadas à rolagem. */
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .paper, .modern-timeline article, .nearby-grid > button, .vacancy-content > *, .photo-carousel {
-      animation: emerge linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 20%;
-    }
-    @keyframes emerge {
-      from {opacity:0; transform:translateY(16px)}
-      to {opacity:1; transform:translateY(0)}
-    }
-  }
-}
-
 /* Cartões de ex-alunos e homenageados */
 .people-cards {display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px}
 .person-card {min-width:0; padding:20px 15px; text-align:center; background:var(--card); border:1px solid var(--border); border-radius:5px; transition:transform .2s ease,box-shadow .2s ease}
@@ -272,11 +257,7 @@ h2.section-title {font:400 clamp(24px,2.6vw,33px)/1.4 'Libre Baskerville',Georgi
 .person-card p {margin:0; font-size:12px; line-height:1.55; color:var(--muted)}
 @media(max-width:700px) {.people-cards {grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px} .person-card {padding:16px 10px}}
 @media(max-width:350px) {.people-cards {grid-template-columns:1fr}}
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .person-card {animation:emerge linear both; animation-timeline:view(); animation-range:entry 0% entry 20%}
-  }
-}
+
 
 .person-card img.resident-photo {object-fit:cover; padding:0}
 
@@ -284,4 +265,37 @@ h2.section-title {font:400 clamp(24px,2.6vw,33px)/1.4 'Libre Baskerville',Georgi
 .page-main::before {background-image:url("../imagens/em-tracos.svg")}
 @media (prefers-reduced-motion:reduce) {
   .page-main::before {background-image:url("../imagens/EM.png")}
+}
+
+/* Entradas suaves: o conteúdo permanece visível em navegadores sem essa API. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .page-main .section-kicker,
+    .page-main h1,
+    .page-main .section-title,
+    .page-main .section-intro,
+    .page-main .lead,
+    .about-description p,
+    .hero-actions,
+    .modern-timeline article,
+    .photo-carousel,
+    .vacancy-content > div,
+    .map-frame,
+    .nearby-grid > button,
+    .person-card,
+    .link-strip {
+      animation: content-arrive linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 25%;
+    }
+    .person-card {animation-name: card-arrive}
+    @keyframes content-arrive {
+      from {opacity:0; translate:0 18px; filter:blur(2px)}
+      to {opacity:1; translate:0 0; filter:blur(0)}
+    }
+    @keyframes card-arrive {
+      from {opacity:0; translate:0 14px; scale:.98}
+      to {opacity:1; translate:0 0; scale:1}
+    }
+  }
 }
