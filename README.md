@@ -1,43 +1,40 @@
-# República Adega — site oficial (modelo)
+# República Adega — site oficial
 
-Site estático em português do Brasil, adaptado do layout de `gabrielxcosta.github.io` para `gabrielxcosta/republica-adega`.
+Site estático em português do Brasil sobre a República Adega, sua história, sua casa e sua comunidade em Ouro Preto.
 
 ## Publicação pelo GitHub Pages
 
-1. Extraia o ZIP e envie **os arquivos extraídos do ZIP** para a raiz do repositório `gabrielxcosta/republica-adega`. Não envie apenas o arquivo ZIP nem crie outra subpasta.
+1. Envie os arquivos e pastas do site para a raiz do repositório `gabrielxcosta/republica-adega`.
 2. Em **Settings → Pages**, configure **Deploy from a branch** → **main** → **/(root)**.
-3. O site ficará disponível em `https://gabrielxcosta.github.io/republica-adega/` após a publicação.
+3. Após a publicação, o site estará disponível em <https://gabrielxcosta.github.io/republica-adega/>.
+
+O site não requer instalação de dependências ou etapa de compilação. Para visualizar localmente, abra `index.html` no navegador ou, na pasta do projeto, execute `python3 -m http.server 8000` e acesse `http://localhost:8000/`.
 
 ## Estrutura
 
-- `index.html`: Sobre; fundação (1963), história, acervo, vagas e localização com mapa interativo.
-- `ex-alunos.html`: primeira geração e espaço para futuros perfis de ex-moradores.
-- `homenageados.html`: seção preparada para homenagens confirmadas.
-- `moradores.html`: seção preparada para residentes atuais; nomes não inventados.
-- `assets/site.css`, `assets/site.js`: visual responsivo e comportamento do site.
-- `imagens/logo-adega.png`: o logo principal escolhido, idêntico à imagem escolhida.
-- `imagens/logo-adega-700.webp` e `logo-adega-1100.webp`: versões otimizadas.
-- O site usa somente o logo principal `imagens/logo-adega.png` (e suas versões otimizadas) em toda a identidade visual, inclusive como ícone do navegador.
-- `imagens/historia-*.webp`: páginas digitalizadas do acervo fornecido para apoio à seção histórica.
+- `index.html`: apresentação, história, fotos da casa, informações para calouros e localização.
+- `ex-alunos.html`: cartões de ex-alunos e homenageados, em seções separadas.
+- `homenageados.html`: redirecionamento do endereço antigo para a seção de homenageados.
+- `moradores.html`: cartões dos moradores atuais, com fotos e cursos.
+- `assets/site.css`: estilos responsivos, marca-d’água e animações.
+- `assets/site.js`: menu para celular, carrossel da casa e seleção de locais no mapa.
+- `imagens/logo-adega.png`: logo da República e ícone do site.
+- `imagens/EM.png` e `imagens/em-tracos.svg`: brasão da Escola de Minas e versão animada usada como marca-d’água.
+- `imagens/pessoa.svg`: imagem provisória dos cartões de ex-alunos e homenageados.
+- `imagens/casa/`: fotos originais da casa; `imagens/casa/otimizadas/` contém as versões usadas no carrossel.
+- `imagens/moradores/`: fotos dos moradores atuais.
 
-## Cores
+Para atualizar os cartões, edite os dados na página HTML correspondente. Para alterar as fotos do carrossel, atualize também a lista de arquivos em `assets/site.js` e as versões otimizadas em `imagens/casa/otimizadas/`.
 
-- Fundo: `#ebe6dc`
-- Detalhes: `#61262a`
+## Recursos visuais e mapa
+
+O fundo usa a cor `#ebe6dc`, e os detalhes usam `#61262a`. O brasão da Escola de Minas aparece como marca-d’água com traços animados; a animação respeita a preferência do navegador por movimento reduzido.
+
+O mapa é incorporado em um iframe do Google Maps e depende de conexão à internet. Ao passar o mouse ou selecionar uma categoria de locais próximos, o mapa exibe a busca correspondente. A disponibilidade da incorporação depende do Google Maps e das configurações do navegador.
 
 ## Fontes da história
 
-- Material comemorativo da República Adega (50 anos), digitalização fornecida pelo solicitante, especialmente páginas 10–11, 14–15, 20, 28–29 (numeração impressa no acervo).
-- Site histórico da República: https://adega5.wixsite.com/republicaadega/slideshow
-- Notícia UFOP de 2014: https://ufop.br/noticias/repblica-adega-lana-livro-e-documentrio-sobre-sua-histria
-- Registro institucional: https://www.prace.ufop.br/assistencia-estudantil/moradia-estudantil/modalidade-de-gestao-compartilhada/adega
-
-O relato dos quatro moradores que se mudaram no marco fundador e o estatuto que lista cinco fundadores são apresentados separadamente. Não são inventados nomes, fotografias ou homenagens de pessoas atuais. O CEP `35400-111` e as informações de proximidade seguem os dados enviados pelo solicitante; registros mais antigos mostram `35400-000`.
-
-**Mapa**: incorporado via Google Maps (iframe pela busca do endereço informado). Não requer token nem servidor; depende de conexão à internet. Ao abrir localmente, o navegador pode restringir incorporações; no GitHub Pages funcionará conforme as políticas do provedor.
-
-## Ajustes visuais de novembro de 2026
-
-O cabeçalho e a barra lateral foram compactados, o logo foi mantido uma única vez por página, acima do nome República Adega, e o conteúdo das seções não depende mais de animação para aparecer. O CSS foi reorganizado para evitar imagens grandes e rolagem horizontal em telas pequenas.
-
-**Limpeza opcional no repositório:** remova versões antigas não utilizadas, como `favicon.svg`, `imagens/emblema.svg`, `imagens/pessoa.svg` e qualquer `emblema-ra.png`, caso ainda existam no GitHub. O site corrigido não aponta para esses arquivos.
+- Material comemorativo da República Adega (50 anos), especialmente as páginas 10–11, 14–15, 20 e 28–29 da numeração impressa.
+- [Site histórico da República](https://adega5.wixsite.com/republicaadega/slideshow).
+- [Notícia da UFOP de 2014](https://ufop.br/noticias/repblica-adega-lana-livro-e-documentrio-sobre-sua-histria).
+- [Registro institucional da UFOP](https://www.prace.ufop.br/assistencia-estudantil/moradia-estudantil/modalidade-de-gestao-compartilhada/adega).
