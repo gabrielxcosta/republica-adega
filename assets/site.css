@@ -287,3 +287,11 @@ h2.section-title {font:400 clamp(24px,2.6vw,33px)/1.4 'Libre Baskerville',Georgi
   .person-card:hover {transform:none; box-shadow:none}
   .nearby-grid>button:hover:not(:focus-visible) {border-color:#bba59a; background:transparent}
 }
+
+/* Busca de ex-alunos e homenageados */
+.people-search {margin:0 0 38px; max-width:520px}
+.people-search label {display:block; margin-bottom:7px; color:var(--wine); font-size:12px; font-weight:700}
+.people-search input {width:100%; min-height:46px; padding:10px 14px; border:1px solid var(--border); border-radius:5px; background:var(--card); color:var(--ink); font:inherit}
+.people-search input:focus-visible {outline:2px solid var(--wine); outline-offset:2px}
+.people-search p {min-height:1.5em; margin:7px 0 0; color:var(--muted); font-size:12px}
+.person-card[hidden] {display:none}

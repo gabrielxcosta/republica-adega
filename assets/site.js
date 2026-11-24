@@ -76,3 +76,21 @@
   }, {threshold: 0, rootMargin: '0px 0px -30px 0px'});
   items.forEach(item => { item.classList.add('entrance-pending'); observer.observe(item); });
 })();
+
+(() => {
+  const input = document.querySelector('#people-search');
+  if (!input) return;
+  const cards = Array.from(document.querySelectorAll('#ex-alunos .person-card, #homenageados .person-card'));
+  const status = document.querySelector('#search-status');
+  const normalize = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('pt-BR').trim();
+  input.addEventListener('input', () => {
+    const query = normalize(input.value);
+    let count = 0;
+    cards.forEach(card => {
+      const matches = normalize(card.textContent).includes(query);
+      card.hidden = !matches;
+      if (matches) count++;
+    });
+    status.textContent = query ? (count ? `${count} ${count === 1 ? 'pessoa encontrada' : 'pessoas encontradas'}.` : 'Nenhuma pessoa encontrada.') : '';
+  });
+})();
