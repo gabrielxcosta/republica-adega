@@ -45,8 +45,12 @@
     map.title = 'Mapa: ' + button.querySelector('strong').textContent + ' em Ouro Preto';
   }
   document.querySelectorAll('[data-map-query]').forEach(button => {
-    button.addEventListener('mouseenter', () => showPlace(button));
-    button.addEventListener('focus', () => showPlace(button));
+    button.addEventListener('mouseenter', () => {
+      if (window.matchMedia('(hover: hover)').matches) showPlace(button);
+    });
+    button.addEventListener('focus', () => {
+      if (button.matches(':focus-visible')) showPlace(button);
+    });
     button.addEventListener('click', () => showPlace(button));
   });
 })();
